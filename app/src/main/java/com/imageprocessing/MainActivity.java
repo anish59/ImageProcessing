@@ -5,19 +5,21 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.imageprocessing.helper.FunctionHelper;
+import com.imageprocessing.helper.GraphicsView;
+import com.imageprocessing.helper.ImageProcessor;
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageView imgInput, imgResult;
     private Context context;
     private Button btnConvert;
+
     private Bitmap bitmapOutput;
 
     @Override
@@ -54,13 +56,26 @@ public class MainActivity extends AppCompatActivity {
 //                bitmapOutput = FunctionHelper.engrave(bitmapInput);
 //                bitmapOutput = FunctionHelper.boost(bitmapInput,2,67);
 //                bitmapOutput = FunctionHelper.roundCorner(bitmapInput,45);
+//                bitmapOutput = FunctionHelper.flip(bitmapInput, 1);
+//                bitmapOutput = FunctionHelper.tintImage(bitmapInput, 20);//nice :)
+//                bitmapOutput = FunctionHelper.applyFleaEffect(bitmapInput);
+//                bitmapOutput = FunctionHelper.applyBlackFilter(bitmapInput);
+//                bitmapOutput = FunctionHelper.applySnowEffect(bitmapInput);
+//                bitmapOutput = FunctionHelper.applyShadingFilter(bitmapInput, getResources().getColor(R.color.colorAccent));
+//                bitmapOutput = FunctionHelper.applySaturationFilter(bitmapInput, 50);
+//                bitmapOutput = FunctionHelper.applyHueFilter(bitmapInput, 50);
 //                setWaterMarkText(bitmapInput);
-
-
+//                changePixelColor(bitmapInput);
+//                new GraphicsView(context,"hello qwert ASDDS");//NO IDEA
+                bitmapOutput = FunctionHelper.applyReflection(bitmapInput);
                 imgResult.setImageBitmap(bitmapOutput);
-
             }
         });
+    }
+
+    private void changePixelColor(Bitmap bitmapInput) { //not getting idea
+        ImageProcessor imgProcr = new ImageProcessor(bitmapInput);
+        bitmapOutput = imgProcr.replaceColor(context.getResources().getColor(R.color.fromColor), context.getResources().getColor(R.color.toColor));
     }
 
     private void setWaterMarkText(Bitmap bitmapInput) { //not getting idea
